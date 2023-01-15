@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+  db_saturn:
+    image: "postgres"
+    container_name: "database_saturn"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ${SERVICE_DIRECTORY}/DB_SATURN:/var/lib/postgresql/data
+    restart: always
+    env_file:
+      - AccessControlSystem.env
+  main_service:
+    build: ./
+    container_name: "service_saturn"
+    restart: always
+    env_file:
+      - AccessControlSystem.env
+    volumes:
+      - ${SERVICE_DIRECTORY}/CSV:${UPLOAD_DIRECTORY}
+    ports:
+    - "80:80"
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    ports:
+      - "5050:80"
+    env_file:
+      - AccessControlSystem.env

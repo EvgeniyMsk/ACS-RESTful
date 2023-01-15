@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/db_saturn
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    show-sql: false
+    open-in-view: true
+  devtools:
+    restart:
+      enabled: false
+upload:
+  directory: C:/database
+
+pdf:
+  font: tnr.ttf
+
+authentication:
+  tokenExpiration: 36000000
+
+server:
+  port: 80
